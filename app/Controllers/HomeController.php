@@ -2,21 +2,28 @@
 
 namespace App\Controllers;
 
-use App\Services\ProductsService;
+use App\Factories\AmorFactory;
 
 class HomeController
 {
     public function index()
     {
-        $service = new ProductsService();
-        $products = $service->getAllProducts();
+        $tipo = $_GET['tipo'] ?? 'philia';
+        $intensidade = (float) ($_GET['intensidade'] ?? 0.5);
 
-        $title = 'Produtos em destaque';
+        $amor = AmorFactory::create($tipo, $intensidade);
 
         // Retorna os dados para o Router renderizar
         return [
             'view' => 'home',
-            'data' => compact('title', 'products')
+            'data' => compact('amor')
         ];
+    }
+
+    public function expressar()
+    {
+        $amor = AmorFactory::create($tipo);
+
+        echo json_encode($amor->detalhes());
     }
 }
