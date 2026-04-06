@@ -21,4 +21,14 @@ class AmorFactory
             default => throw new \Exception("Tipo inválido")
         };
     }
+
+    public static function get(): array
+    {
+        return [
+            'philia' => new Philia(),
+            'eros' => new Eros(),
+            'agape' => new Agape(),
+            'storge' => new Storge(),
+        ];
+    }
 }
