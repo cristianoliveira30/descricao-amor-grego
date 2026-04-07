@@ -14,7 +14,12 @@ class HomeController
         // Renderiza o componente Vue Pages/Home.vue via Inertia
         Inertia::render('Home', [
             'title'       => 'Bem-vindo',
-            'amor'        => $amor,
+            'amor'        => [
+                'philia' => $amor['philia']->detalhes(),
+                'eros'   => $amor['eros']->detalhes(),
+                'agape'  => $amor['agape']->detalhes(),
+                'storge' => $amor['storge']->detalhes(),
+            ]
         ]);
     }
 
